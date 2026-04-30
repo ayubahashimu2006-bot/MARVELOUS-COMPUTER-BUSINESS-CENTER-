@@ -7,55 +7,71 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:'Segoe UI', sans-serif;
 }
 
 body{
-height:100vh;
+min-height:100vh;
 overflow-x:hidden;
 color:white;
+background:#05070d;
 }
 
-/* BACKGROUND SLIDESHOW */
+/* FINTECH DARK COMPUTER BACKGROUND SLIDESHOW */
 .bg{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-z-index:-1;
+z-index:-2;
 animation:bgSlide 30s infinite;
 background-size:cover;
 background-position:center;
-filter:brightness(0.4);
+filter:brightness(0.25) contrast(1.1);
+}
+
+/* DARK OVERLAY FOR FINTECH LOOK */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+background:radial-gradient(circle at top, rgba(0,255,200,0.08), rgba(0,0,0,0.95));
 }
 
 @keyframes bgSlide{
-0%{background-image:url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5');}
-20%{background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475');}
-40%{background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');}
-60%{background-image:url('https://images.unsplash.com/photo-1537432376769-00f5c2f4c8a1');}
-80%{background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d');}
-100%{background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d');}
+0%{background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475');}
+25%{background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085');}
+50%{background-image:url('https://images.unsplash.com/photo-1537432376769-00f5c2f4c8a1');}
+75%{background-image:url('https://images.unsplash.com/photo-1581092160607-ee22621dd758');}
+100%{background-image:url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b');}
 }
 
 header{
 text-align:center;
-padding:40px 20px;
+padding:40px 15px;
 }
 
 header h1{
 font-size:32px;
-letter-spacing:2px;
-font-weight:bold;
+letter-spacing:3px;
+font-weight:900;
+text-transform:uppercase;
+background:linear-gradient(90deg,#00ffcc,#00aaff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 header p{
 margin-top:10px;
 font-size:14px;
-color:#ddd;
+color:#bdbdbd;
 }
 
+/* GLASSMORPHISM GRID */
 .container{
 max-width:1100px;
 margin:auto;
@@ -66,97 +82,157 @@ gap:20px;
 }
 
 .card{
-background:rgba(0,0,0,0.6);
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(0,255,200,0.2);
 padding:20px;
-border-radius:15px;
-backdrop-filter:blur(10px);
-box-shadow:0 0 20px rgba(0,0,0,0.5);
+border-radius:18px;
+backdrop-filter:blur(15px);
+box-shadow:0 0 25px rgba(0,255,200,0.08);
 transition:0.3s;
+position:relative;
+overflow:hidden;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-6px);
+box-shadow:0 0 40px rgba(0,255,200,0.25);
 }
 
 .card h3{
-margin-bottom:10px;
 color:#00ffcc;
+margin-bottom:10px;
 }
 
+.card p{
+font-size:13px;
+color:#dcdcdc;
+margin-bottom:15px;
+}
+
+.order{
+display:block;
+text-align:center;
+padding:10px;
+border-radius:30px;
+background:linear-gradient(90deg,#00ff99,#00ccff);
+color:#000;
+font-weight:bold;
+text-decoration:none;
+}
+
+.order:hover{
+opacity:0.9;
+transform:scale(1.03);
+}
+
+/* CONTACT BUTTONS */
 .contact{
 text-align:center;
-padding:30px;
+padding:40px 20px;
 }
 
 .btn{
 display:inline-block;
-margin:10px;
-padding:12px 20px;
-border-radius:50px;
+padding:12px 18px;
+border-radius:30px;
 text-decoration:none;
 font-weight:bold;
+margin:6px;
 transition:0.3s;
 }
 
-.whatsapp{
-background:#25D366;
-color:white;
-}
-
-.call{
-background:#007BFF;
-color:white;
-}
-
-.email{
-background:#ff9800;
-color:white;
-}
+.whatsapp-btn{background:#25D366;color:white;}
+.call-btn{background:#00aaff;color:white;}
+.email-btn{background:#ff9800;color:white;}
 
 .btn:hover{
-opacity:0.8;
 transform:scale(1.05);
+opacity:0.9;
+}
+
+/* ADMIN PORTAL (HIDDEN FINTECH PANEL) */
+.admin-panel{
+max-width:800px;
+margin:40px auto;
+padding:20px;
+background:rgba(0,0,0,0.6);
+border:1px solid rgba(0,255,200,0.3);
+border-radius:15px;
+backdrop-filter:blur(10px);
+}
+
+.admin-panel h2{
+color:#00ffcc;
+margin-bottom:15px;
+}
+
+.admin-panel input, .admin-panel textarea{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+background:#111;
+color:white;
+}
+
+.admin-panel button{
+padding:10px 15px;
+border:none;
+border-radius:8px;
+background:#00ffcc;
+color:#000;
+font-weight:bold;
+cursor:pointer;
 }
 
 footer{
 text-align:center;
 padding:20px;
 font-size:12px;
-color:#ccc;
+color:#888;
 }
 
-</style></head><body><div class="bg"></div><header>
+</style></head><body><div class="bg"></div>
+<div class="overlay"></div><header>
 <h1>MARVELOUS COMPUTER BUSINESS CENTER</h1>
-<p>Fast • Reliable • Trusted Digital Services</p>
+<p>Fintech-Style Digital Services Platform</p>
 </header><section class="container"><div class="card">
 <h3>BVN Services</h3>
 <p>Registration, correction and updates.</p>
+<a class="order" href="https://wa.me/2348083538664?text=I%20want%20BVN%20service">Order on WhatsApp</a>
 </div><div class="card">
 <h3>NIN Services</h3>
 <p>Enrollment and modification services.</p>
+<a class="order" href="https://wa.me/2348083538664?text=I%20want%20NIN%20service">Order on WhatsApp</a>
 </div><div class="card">
 <h3>CAC Registration</h3>
-<p>Business name registration and certificate processing.</p>
+<p>Business registration and certification.</p>
+<a class="order" href="https://wa.me/2348083538664?text=CAC%20registration">Order on WhatsApp</a>
 </div><div class="card">
-<h3>Printing & Typing</h3>
-<p>Professional document typing, printing and scanning.</p>
+<h3>Printing Services</h3>
+<p>Typing, printing and scanning.</p>
+<a class="order" href="https://wa.me/2348083538664?text=Printing%20service">Order on WhatsApp</a>
 </div><div class="card">
-<h3>Cyber Café Services</h3>
-<p>Online registration, email creation and support.</p>
+<h3>Cyber Café</h3>
+<p>Online registrations & support.</p>
+<a class="order" href="https://wa.me/2348083538664?text=Cyber%20service">Order on WhatsApp</a>
 </div><div class="card">
 <h3>Data & Airtime</h3>
-<p>Fast mobile recharge and data subscription.</p>
+<p>Instant recharge services.</p>
+<a class="order" href="https://wa.me/2348083538664?text=Data%20or%20airtime">Order on WhatsApp</a>
 </div></section><section class="contact">
-<h2>Contact Us</h2><a class="btn whatsapp" href="https://wa.me/2348083538664" target="_blank">
-💬 WhatsApp Chat
-</a><a class="btn call" href="tel:+2348025383947">
-📞 Call Now
-</a><a class="btn email" href="mailto:marvellouscomputercente@gmail.com">
-📧 Email Us
-</a><p style="margin-top:15px; font-size:13px;">
-WhatsApp: +234 808 353 8664 | Calls: +234 802 538 3947
-</p>
+<h2>Contact</h2>
+<a class="btn whatsapp-btn" href="https://wa.me/2348083538664">WhatsApp</a>
+<a class="btn call-btn" href="tel:+2348025383947">Call</a>
+<a class="btn email-btn" href="mailto:marvellouscomputercente@gmail.com">Email</a>
+</section><!-- ADMIN PORTAL (BASIC FINTECH STYLE) --><section class="admin-panel">
+<h2>Admin Portal</h2>
+<p>Update business services (demo panel)</p>
+<input placeholder="Service Title" />
+<textarea placeholder="Service Description"></textarea>
+<button onclick="alert('Saved (demo only)')">Save Service</button>
 </section><footer>
-© 2026 MARVELOUS COMPUTER BUSINESS CENTER. All Rights Reserved.
+© 2026 MARVELOUS COMPUTER BUSINESS CENTER | Fintech Grade System
 </footer></body>
 </html>
