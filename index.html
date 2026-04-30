@@ -17,7 +17,6 @@ color:white;
 background:#05070d;
 }
 
-/* FINTECH DARK COMPUTER BACKGROUND SLIDESHOW */
 .bg{
 position:fixed;
 top:0;
@@ -31,7 +30,6 @@ background-position:center;
 filter:brightness(0.25) contrast(1.1);
 }
 
-/* DARK OVERLAY FOR FINTECH LOOK */
 .overlay{
 position:fixed;
 top:0;
@@ -71,7 +69,6 @@ font-size:14px;
 color:#bdbdbd;
 }
 
-/* GLASSMORPHISM GRID */
 .container{
 max-width:1100px;
 margin:auto;
@@ -89,8 +86,6 @@ border-radius:18px;
 backdrop-filter:blur(15px);
 box-shadow:0 0 25px rgba(0,255,200,0.08);
 transition:0.3s;
-position:relative;
-overflow:hidden;
 }
 
 .card:hover{
@@ -98,16 +93,8 @@ transform:translateY(-6px);
 box-shadow:0 0 40px rgba(0,255,200,0.25);
 }
 
-.card h3{
-color:#00ffcc;
-margin-bottom:10px;
-}
-
-.card p{
-font-size:13px;
-color:#dcdcdc;
-margin-bottom:15px;
-}
+.card h3{color:#00ffcc;margin-bottom:10px;}
+.card p{font-size:13px;color:#dcdcdc;margin-bottom:15px;}
 
 .order{
 display:block;
@@ -120,119 +107,65 @@ font-weight:bold;
 text-decoration:none;
 }
 
-.order:hover{
-opacity:0.9;
-transform:scale(1.03);
-}
-
-/* CONTACT BUTTONS */
 .contact{
 text-align:center;
 padding:40px 20px;
 }
 
-.btn{
-display:inline-block;
-padding:12px 18px;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
-margin:6px;
-transition:0.3s;
-}
-
+.btn{display:inline-block;padding:12px 18px;border-radius:30px;text-decoration:none;font-weight:bold;margin:6px;}
 .whatsapp-btn{background:#25D366;color:white;}
 .call-btn{background:#00aaff;color:white;}
 .email-btn{background:#ff9800;color:white;}
 
-.btn:hover{
-transform:scale(1.05);
-opacity:0.9;
-}
-
-/* ADMIN PORTAL (HIDDEN FINTECH PANEL) */
-.admin-panel{
-max-width:800px;
-margin:40px auto;
-padding:20px;
-background:rgba(0,0,0,0.6);
-border:1px solid rgba(0,255,200,0.3);
-border-radius:15px;
-backdrop-filter:blur(10px);
-}
-
-.admin-panel h2{
-color:#00ffcc;
-margin-bottom:15px;
-}
-
-.admin-panel input, .admin-panel textarea{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:none;
-border-radius:8px;
-background:#111;
-color:white;
-}
-
-.admin-panel button{
-padding:10px 15px;
-border:none;
-border-radius:8px;
-background:#00ffcc;
-color:#000;
-font-weight:bold;
-cursor:pointer;
-}
-
-footer{
-text-align:center;
-padding:20px;
-font-size:12px;
-color:#888;
-}
-
+footer{text-align:center;padding:20px;font-size:12px;color:#888;}
 </style></head><body><div class="bg"></div>
 <div class="overlay"></div><header>
 <h1>MARVELOUS COMPUTER BUSINESS CENTER</h1>
 <p>Fintech-Style Digital Services Platform</p>
-</header><section class="container"><div class="card">
-<h3>BVN Services</h3>
-<p>Registration, correction and updates.</p>
-<a class="order" href="https://wa.me/2348083538664?text=I%20want%20BVN%20service">Order on WhatsApp</a>
-</div><div class="card">
-<h3>NIN Services</h3>
-<p>Enrollment and modification services.</p>
-<a class="order" href="https://wa.me/2348083538664?text=I%20want%20NIN%20service">Order on WhatsApp</a>
-</div><div class="card">
-<h3>CAC Registration</h3>
-<p>Business registration and certification.</p>
-<a class="order" href="https://wa.me/2348083538664?text=CAC%20registration">Order on WhatsApp</a>
-</div><div class="card">
-<h3>Printing Services</h3>
-<p>Typing, printing and scanning.</p>
-<a class="order" href="https://wa.me/2348083538664?text=Printing%20service">Order on WhatsApp</a>
-</div><div class="card">
-<h3>Cyber Café</h3>
-<p>Online registrations & support.</p>
-<a class="order" href="https://wa.me/2348083538664?text=Cyber%20service">Order on WhatsApp</a>
-</div><div class="card">
-<h3>Data & Airtime</h3>
-<p>Instant recharge services.</p>
-<a class="order" href="https://wa.me/2348083538664?text=Data%20or%20airtime">Order on WhatsApp</a>
-</div></section><section class="contact">
+</header><!-- SERVICES FROM BACKEND --><section class="container" id="services"></section><section class="contact">
 <h2>Contact</h2>
 <a class="btn whatsapp-btn" href="https://wa.me/2348083538664">WhatsApp</a>
 <a class="btn call-btn" href="tel:+2348025383947">Call</a>
 <a class="btn email-btn" href="mailto:marvellouscomputercente@gmail.com">Email</a>
-</section><!-- ADMIN PORTAL (BASIC FINTECH STYLE) --><section class="admin-panel">
-<h2>Admin Portal</h2>
-<p>Update business services (demo panel)</p>
-<input placeholder="Service Title" />
-<textarea placeholder="Service Description"></textarea>
-<button onclick="alert('Saved (demo only)')">Save Service</button>
 </section><footer>
-© 2026 MARVELOUS COMPUTER BUSINESS CENTER | Fintech Grade System
-</footer></body>
+© 2026 MARVELOUS COMPUTER BUSINESS CENTER | Fintech System
+</footer><script>
+// ===============================
+// BACKEND CONNECTION
+// ===============================
+
+// CHANGE THIS WHEN YOU DEPLOY BACKEND ONLINE
+const API_URL = "http://localhost:3000";
+
+async function loadServices(){
+    try{
+        const res = await fetch(API_URL + "/services");
+        const data = await res.json();
+
+        const container = document.getElementById("services");
+        container.innerHTML = "";
+
+        data.forEach(service => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            card.innerHTML = `
+                <h3>${service.title}</h3>
+                <p>${service.description}</p>
+                <a class="order" target="_blank"
+                href="https://wa.me/2348083538664?text=${encodeURIComponent(service.whatsappText)}">
+                Order on WhatsApp
+                </a>
+            `;
+
+            container.appendChild(card);
+        });
+
+    }catch(err){
+        console.log("Backend not connected", err);
+    }
+}
+
+loadServices();
+</script></body>
 </html>
