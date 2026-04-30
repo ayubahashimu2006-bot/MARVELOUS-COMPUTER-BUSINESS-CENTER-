@@ -3,70 +3,65 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MARVELOUS COMPUTER BUSINESS CENTER</title><style>
+:root{
+--primary:#00ffcc;
+--secondary:#00aaff;
+--dark:#05070d;
+--glass:rgba(255,255,255,0.06);
+}
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Segoe UI', sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
 min-height:100vh;
-overflow-x:hidden;
+background:var(--dark);
 color:white;
-background:#05070d;
+overflow-x:hidden;
 }
 
-/* LOADING SCREEN */
+/* LOADER */
 #loader{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 background:#05070d;
-z-index:9999;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
+z-index:9999;
 }
-
 .spinner{
 width:60px;
 height:60px;
 border:5px solid #222;
-border-top:5px solid #00ffcc;
+border-top:5px solid var(--primary);
 border-radius:50%;
 animation:spin 1s linear infinite;
 }
-
-@keyframes spin{
-100%{transform:rotate(360deg);}
-}
+@keyframes spin{100%{transform:rotate(360deg);}}
 
 /* BACKGROUND */
 .bg{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 z-index:-2;
 animation:bgSlide 30s infinite;
 background-size:cover;
 background-position:center;
-filter:brightness(0.25) contrast(1.1);
+filter:brightness(0.22) contrast(1.2);
 }
 
 .overlay{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 z-index:-1;
-background:radial-gradient(circle at top, rgba(0,255,200,0.08), rgba(0,0,0,0.95));
+background:radial-gradient(circle at top, rgba(0,255,200,0.1), rgba(0,0,0,0.95));
 }
 
 @keyframes bgSlide{
@@ -77,92 +72,130 @@ background:radial-gradient(circle at top, rgba(0,255,200,0.08), rgba(0,0,0,0.95)
 100%{background-image:url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b');}
 }
 
-/* STICKY NAV */
+/* NAV */
 nav{
 position:sticky;
 top:0;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
+z-index:1000;
 display:flex;
 justify-content:center;
-gap:20px;
-padding:12px;
-z-index:1000;
+gap:25px;
+padding:14px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(12px);
 border-bottom:1px solid rgba(0,255,200,0.2);
 }
-
 nav a{
-color:#00ffcc;
+color:var(--primary);
 text-decoration:none;
-font-weight:bold;
+font-weight:600;
 font-size:14px;
+transition:0.3s;
 }
+nav a:hover{color:white;}
 
-header{
+/* HERO */
+.hero{
 text-align:center;
-padding:40px 15px;
+padding:80px 20px 40px;
+animation:fadeIn 1s ease;
 }
 
-header h1{
-font-size:32px;
-letter-spacing:3px;
-font-weight:900;
+.hero h1{
+font-size:38px;
 text-transform:uppercase;
-background:linear-gradient(90deg,#00ffcc,#00aaff);
+background:linear-gradient(90deg,var(--primary),var(--secondary));
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+letter-spacing:2px;
 }
 
-header p{color:#bdbdbd;margin-top:10px;}
+.hero p{
+margin-top:10px;
+color:#ccc;
+font-size:15px;
+}
+
+.slogan{
+margin-top:15px;
+font-size:16px;
+color:#ffffff;
+opacity:0.9;
+font-style:italic;
+}
+
+.btn-group{
+margin-top:20px;
+}
+
+.hero-btn{
+display:inline-block;
+padding:10px 18px;
+margin:5px;
+border-radius:25px;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+.primary{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#000;}
+.secondary{border:1px solid var(--primary);color:var(--primary);}
+
+/* SERVICES */
+.section-title{
+text-align:center;
+margin:40px 0 10px;
+font-size:22px;
+color:var(--primary);
+}
 
 .container{
 max-width:1100px;
 margin:auto;
 padding:20px;
 display:grid;
-grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
 gap:20px;
 }
 
 .card{
-background:rgba(255,255,255,0.05);
+background:var(--glass);
 border:1px solid rgba(0,255,200,0.2);
 padding:20px;
 border-radius:18px;
 backdrop-filter:blur(15px);
 transition:0.3s;
 }
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 30px rgba(0,255,200,0.2);
+}
 
-.card:hover{transform:translateY(-6px);}
-
-.card h3{color:#00ffcc;}
-.card p{font-size:13px;color:#ddd;margin-bottom:10px;}
+.card h3{color:var(--primary);margin-bottom:8px;}
+.card p{font-size:13px;color:#ddd;margin-bottom:12px;}
 
 .order{
 display:block;
 text-align:center;
 padding:10px;
-border-radius:30px;
+border-radius:25px;
 background:linear-gradient(90deg,#00ff99,#00ccff);
 color:#000;
 font-weight:bold;
-text-decoration:none;
 cursor:pointer;
 }
 
-/* TESTIMONIALS SCROLL */
+/* TESTIMONIALS */
 .testimonials{
-overflow:hidden;
 white-space:nowrap;
-padding:20px;
-background:rgba(0,0,0,0.3);
+overflow:hidden;
+background:rgba(255,255,255,0.04);
+padding:15px;
+margin-top:30px;
 }
-
 .scroll{
 display:inline-block;
-animation:scroll 20s linear infinite;
+animation:scroll 18s linear infinite;
 }
-
 @keyframes scroll{
 0%{transform:translateX(100%);}
 100%{transform:translateX(-100%);}
@@ -171,106 +204,96 @@ animation:scroll 20s linear infinite;
 /* CONTACT */
 .contact{
 text-align:center;
-padding:30px;
+padding:40px 20px;
 }
+.btn{
+padding:12px 18px;
+border-radius:25px;
+margin:5px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+}
+.whatsapp{background:#25D366;color:white;}
+.call{background:#00aaff;color:white;}
+.email{background:#ff9800;color:white;}
 
-.btn{padding:12px 18px;border-radius:30px;margin:5px;display:inline-block;text-decoration:none;font-weight:bold;}
-.whatsapp-btn{background:#25D366;color:white;}
-.call-btn{background:#00aaff;color:white;}
-.email-btn{background:#ff9800;color:white;}
-
-/* MODAL */
-.modal{
-display:none;
+/* FLOAT WHATSAPP */
+.float{
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.8);
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-.modal-box{
-background:#111;
-padding:20px;
-border-radius:15px;
-width:300px;
-text-align:center;
-}
-
-.modal-box button{
-margin-top:10px;
-padding:10px;
+bottom:20px;
+right:20px;
 background:#25D366;
-border:none;
-color:white;
-border-radius:10px;
+padding:15px;
+border-radius:50%;
+z-index:999;
+box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
 
-footer{text-align:center;padding:20px;color:#777;}
-</style></head><body><!-- LOADER --><div id="loader">
+/* FOOTER */
+footer{
+text-align:center;
+padding:20px;
+font-size:12px;
+color:#777;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style></head><body><div id="loader">
 <div class="spinner"></div>
 <p>Loading MARVELOUS SYSTEM...</p>
 </div><div class="bg"></div>
-<div class="overlay"></div><!-- NAV --><nav>
+<div class="overlay"></div><nav>
 <a href="#home">Home</a>
 <a href="#services">Services</a>
 <a href="#testimonials">Testimonials</a>
 <a href="#contact">Contact</a>
-</nav><header id="home">
+</nav><section class="hero" id="home">
 <h1>MARVELOUS COMPUTER BUSINESS CENTER</h1>
-<p>Fintech-Style Digital Services Platform</p>
-</header><section class="container" id="services"></section><!-- TESTIMONIALS --><div class="testimonials" id="testimonials">
+<p>Learning Skills and Reliable Services</p>
+<p class="slogan">Where Knowledge Meets Technology</p><div class="btn-group">
+<a class="hero-btn primary" href="#services">Get Started</a>
+<a class="hero-btn secondary" href="#contact">Contact Us</a>
+</div>
+</section><h2 class="section-title">Our Services</h2>
+<section class="container" id="services"></section><h2 class="section-title">Testimonials</h2>
+<div class="testimonials" id="testimonials">
 <div class="scroll">
-⭐ Fast service - Customer A &nbsp;&nbsp;&nbsp; ⭐ Very trusted - Customer B &nbsp;&nbsp;&nbsp; ⭐ Best cyber cafe - Customer C &nbsp;&nbsp;&nbsp;
+⭐ Fast & trusted service — Customer A • ⭐ Very reliable — Customer B • ⭐ Best cyber café — Customer C •
 </div>
-</div><!-- CONTACT --><section class="contact" id="contact">
+</div><section class="contact" id="contact">
 <h2>Contact</h2>
-<a class="btn whatsapp-btn" href="https://wa.me/2348083538664">WhatsApp</a>
-<a class="btn call-btn" href="tel:+2348025383947">Call</a>
-<a class="btn email-btn" href="mailto:marvellouscomputercente@gmail.com">Email</a>
-</section><footer>© 2026 MARVELOUS COMPUTER BUSINESS CENTER</footer><!-- MODAL --><div class="modal" id="modal">
-<div class="modal-box">
-<h3>Order Service</h3>
-<p id="modalText"></p>
-<button id="waBtn">Send on WhatsApp</button>
-</div>
-</div><script>
-// loader
-window.onload = ()=>{
-document.getElementById('loader').style.display='none';
-}
+<a class="btn whatsapp" href="https://wa.me/2348083538664">WhatsApp</a>
+<a class="btn call" href="tel:+2348025383947">Call</a>
+<a class="btn email" href="mailto:marvellouscomputercente@gmail.com">Email</a>
+</section><a class="float" href="https://wa.me/2348083538664">💬</a>
 
-// services (demo)
-const services = [
-{title:"BVN Service",text:"I want BVN service"},
-{title:"NIN Service",text:"I want NIN service"},
-{title:"CAC Registration",text:"I want CAC registration"},
-{title:"Printing",text:"I need printing service"}
+<footer>
+© 2026 MARVELOUS COMPUTER BUSINESS CENTER
+</footer><script>
+window.onload=()=>{document.getElementById('loader').style.display='none'};
+
+const services=[
+{t:"BVN Service",m:"I want BVN service"},
+{t:"NIN Service",m:"I want NIN service"},
+{t:"CAC Registration",m:"I want CAC registration"},
+{t:"Printing Service",m:"I need printing service"}
 ];
 
-const container = document.getElementById('services');
+const box=document.getElementById('services');
 
 services.forEach(s=>{
-let div=document.createElement('div');
-div.className='card';
-div.innerHTML=`<h3>${s.title}</h3><p>Professional service available</p><a class='order' onclick="openModal('${s.text}')">Order Now</a>`;
-container.appendChild(div);
+let d=document.createElement('div');
+d.className='card';
+d.innerHTML=`<h3>${s.t}</h3><p>Premium professional service available</p><a class='order' onclick="openW('${s.m}')">Order Now</a>`;
+box.appendChild(d);
 });
 
-function openModal(text){
-document.getElementById('modal').style.display='flex';
-document.getElementById('modalText').innerText=text;
-
-document.getElementById('waBtn').onclick=()=>{
-window.open('https://wa.me/2348083538664?text='+encodeURIComponent(text));
-}
-}
-
-// close modal
-window.onclick=(e)=>{
-if(e.target.id==='modal') document.getElementById('modal').style.display='none';
+function openW(msg){
+window.open('https://wa.me/2348083538664?text='+encodeURIComponent(msg));
 }
 </script></body>
 </html>
